@@ -9,6 +9,8 @@ public class Start {
             request.connect();
             request.sendRequestMessage();
             
+            System.out.println("---------- RESPONSE ----------");
+            
             String line;
             while((line = request.getSocket().getLine()) != null)
             {
