@@ -1,4 +1,4 @@
-package lab1;
+package lab1.http;
 
 public class HttpRequestInfo {
     private HttpRequestType requestType;

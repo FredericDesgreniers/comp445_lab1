@@ -1,4 +1,4 @@
-package lab1;
+package lab1.http;
 
 import java.io.IOException;
 

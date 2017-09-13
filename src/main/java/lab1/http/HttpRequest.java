@@ -1,4 +1,7 @@
-package lab1;
+package lab1.http;
+
+import lab1.sockets.IoSocket;
+import lab1.sockets.IoSocketException;
 
 public class HttpRequest {
     private HttpRequestInfo requestInfo;
