@@ -1,6 +1,8 @@
 package lab1.http;
 
+import java.io.IOException;
 import lab1.http.sockets.IoSocket;
+import lab1.http.sockets.IoSocketConnection;
 import lab1.http.sockets.IoSocketException;
 
 public class HttpRequest {
@@ -15,14 +17,21 @@ public class HttpRequest {
     public HttpRequestConnection connectOnPath(String path) throws HttpRequestException {
         try {
             return tryToConnectOnPath(path);
-        } catch (IoSocketException e) {
+        } catch (IOException e) {
             e.printStackTrace();
             throw new HttpRequestException(this, "Could not connect");
         }
     }
     
-    private HttpRequestConnection tryToConnectOnPath(String path) throws IoSocketException {
-        return new HttpRequestConnection(new HttpRequestConnectionInfo(requestInfo, path), socket.connect());
+    private HttpRequestConnection tryToConnectOnPath(String path) throws IOException {
+        return new HttpRequestConnection(new HttpRequestConnectionInfo(requestInfo, path), createHttpSocketConnection());
+    }
+    
+    private IoSocketConnection createHttpSocketConnection() throws IoSocketException {
+        IoSocketConnection socketConnection = socket.connect();
+        socketConnection.setOutputStream(HttpPrintWriter.class);
+        
+        return socketConnection;
     }
 
     public HttpRequestInfo getRequestInfo() {

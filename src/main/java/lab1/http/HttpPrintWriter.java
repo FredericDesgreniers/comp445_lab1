@@ -3,23 +3,17 @@ package lab1.http;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 
-public class HttpPrintWriter{
-
-    private PrintWriter normalPrintWriter;
+public class HttpPrintWriter extends PrintWriter{
     
     public HttpPrintWriter(OutputStream out) {
-        normalPrintWriter = new PrintWriter(out, false);
+        super(out);
     }
 
     public void println(String line) {
-        normalPrintWriter.print(addHttpEndLine(line));
+        print(addHttpEndLine(line));
     }
     
     public String addHttpEndLine(String line){
         return line + "\r\n";
-    }
-    
-    public void flush(){
-        normalPrintWriter.flush();
     }
 }
