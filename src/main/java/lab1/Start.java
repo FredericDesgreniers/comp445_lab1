@@ -1,7 +1,5 @@
 package lab1;
 
-import java.io.BufferedReader;
-
 public class Start {
     public static void main(String[] args) {
         HttpRequest request = new HttpRequest(new HttpRequestInfo(HttpRequestType.GET, "httpbin.org", 80));

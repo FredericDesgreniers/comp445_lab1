@@ -21,11 +21,6 @@ public class HttpRequest {
     private HttpRequestConnection tryConnect() throws IoSocketException {
         return new HttpRequestConnection(requestInfo, socket.connect());
     }
-    
-
-    public IoSocket getSocket() {
-        return socket;
-    }
 
     public HttpRequestInfo getRequestInfo() {
         return requestInfo;
