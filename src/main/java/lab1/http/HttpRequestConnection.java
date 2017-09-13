@@ -4,13 +4,11 @@ import lab1.http.sockets.IoSocketConnection;
 
 public class HttpRequestConnection {
     private IoSocketConnection socketConnection;
-    private HttpRequestInfo requestInfo;
-    private String path;
+    private HttpRequestConnectionInfo requestConnectionInfo;
     
-    public HttpRequestConnection(HttpRequestInfo requestInfo, IoSocketConnection socketConnection, String path){
+    public HttpRequestConnection(HttpRequestConnectionInfo requestConnectionInfo, IoSocketConnection socketConnection){
         this.socketConnection = socketConnection;
-        this.requestInfo = requestInfo;
-        this.path = path;
+        this.requestConnectionInfo = requestConnectionInfo;
     }
 
     public void sendRequestMessage(){
@@ -21,11 +19,11 @@ public class HttpRequestConnection {
     }
 
     private void sendRequestLine(){
-        socketConnection.sendLineToBuffer(requestInfo.getRequestType().toString()+" "+path+" HTTP/1.0");
+        socketConnection.sendLineToBuffer(requestConnectionInfo.getHttpRequestInfo().getRequestType().toString()+" "+requestConnectionInfo.getPath()+" HTTP/1.0");
     }
 
     private void sendHeaders(){
-        socketConnection.sendLineToBuffer("Host: "+requestInfo.getHost()+":"+requestInfo.getPort());
+        socketConnection.sendLineToBuffer("Host: "+requestConnectionInfo.getHttpRequestInfo().getHost()+":"+requestConnectionInfo.getHttpRequestInfo().getPort());
         socketConnection.sendLineToBuffer("User-Agent: Mozilla/5.0");
     }
 

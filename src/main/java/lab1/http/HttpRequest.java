@@ -22,7 +22,7 @@ public class HttpRequest {
     }
     
     private HttpRequestConnection tryToConnectOnPath(String path) throws IoSocketException {
-        return new HttpRequestConnection(requestInfo, socket.connect(), path);
+        return new HttpRequestConnection(new HttpRequestConnectionInfo(requestInfo, path), socket.connect());
     }
 
     public HttpRequestInfo getRequestInfo() {
