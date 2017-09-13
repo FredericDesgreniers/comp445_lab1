@@ -1,7 +1,7 @@
 package lab1;
 
 import lab1.http.*;
-import lab1.sockets.*;
+import lab1.http.sockets.*;
 
 public class Start {
     public static void main(String[] args) {

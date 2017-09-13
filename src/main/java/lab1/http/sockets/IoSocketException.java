@@ -1,4 +1,4 @@
-package lab1.sockets;
+package lab1.http.sockets;
 
 import java.io.IOException;
 

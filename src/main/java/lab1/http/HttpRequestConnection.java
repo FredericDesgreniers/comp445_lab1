@@ -1,6 +1,6 @@
 package lab1.http;
 
-import lab1.sockets.IoSocketConnection;
+import lab1.http.sockets.IoSocketConnection;
 
 public class HttpRequestConnection {
     private IoSocketConnection socketConnection;

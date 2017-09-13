@@ -1,14 +1,15 @@
-package lab1.sockets;
+package lab1.http.sockets;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import lab1.http.HttpPrintWriter;
 
 public class IoSocketConnection {
     private Socket socket;
-    private PrintWriter output;
+    private HttpPrintWriter output;
     private BufferedReader input;
     
     public IoSocketConnection(Socket socket) throws IOException {
@@ -18,7 +19,7 @@ public class IoSocketConnection {
     }
     
     private void createOutputStream() throws IOException {
-        output = new PrintWriter(socket.getOutputStream(), false);
+        output = new HttpPrintWriter(socket.getOutputStream());
     }
 
     private void createInputReader() throws IOException {
@@ -26,7 +27,7 @@ public class IoSocketConnection {
     }
     
     public void sendLineToBuffer(String line){
-        output.print(line+"\r\n");
+        output.println(line);
         System.out.println(line);
     }
 

@@ -1,7 +1,7 @@
 package lab1.http;
 
-import lab1.sockets.IoSocket;
-import lab1.sockets.IoSocketException;
+import lab1.http.sockets.IoSocket;
+import lab1.http.sockets.IoSocketException;
 
 public class HttpRequest {
     private HttpRequestInfo requestInfo;
