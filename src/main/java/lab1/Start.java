@@ -4,22 +4,27 @@ import java.io.BufferedReader;
 
 public class Start {
     public static void main(String[] args) {
-        HttpRequest request = new HttpRequest("httpbin.org");
+        HttpRequest request = new HttpRequest(new HttpRequestInfo(HttpRequestType.GET, "httpbin.org", 80));
         try {
-            request.connect();
-            request.sendRequestMessage();
+            HttpRequestConnection requestConnection = request.connect();
+
+            requestConnection.sendRequestMessage();
             
-            System.out.println("---------- RESPONSE ----------");
+            printSocketResponse(requestConnection.getSocketConnection());
             
-            String line;
-            while((line = request.getSocket().getLine()) != null)
-            {
-                System.out.println(line);
-            }
         } catch (HttpRequestException e) {
             e.printStackTrace();
         } catch (IoSocketException e) {
             e.printStackTrace();
+        }
+    }
+    
+    public static void printSocketResponse(IoSocketConnection socketConnection) throws IoSocketException {
+        System.out.println("---------- RESPONSE ----------");
+        String line;
+        while((line = socketConnection.getLine()) != null)
+        {
+            System.out.println(line);
         }
     }
 }
