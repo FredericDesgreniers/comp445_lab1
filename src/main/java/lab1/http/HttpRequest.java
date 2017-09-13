@@ -12,17 +12,17 @@ public class HttpRequest {
         socket = new IoSocket(requestInfo.getHost(), requestInfo.getPort());
     }
     
-    public HttpRequestConnection connect() throws HttpRequestException {
+    public HttpRequestConnection connectOnPath(String path) throws HttpRequestException {
         try {
-            return tryConnect();
+            return tryToConnectOnPath(path);
         } catch (IoSocketException e) {
             e.printStackTrace();
             throw new HttpRequestException(this, "Could not connect");
         }
     }
     
-    private HttpRequestConnection tryConnect() throws IoSocketException {
-        return new HttpRequestConnection(requestInfo, socket.connect());
+    private HttpRequestConnection tryToConnectOnPath(String path) throws IoSocketException {
+        return new HttpRequestConnection(requestInfo, socket.connect(), path);
     }
 
     public HttpRequestInfo getRequestInfo() {

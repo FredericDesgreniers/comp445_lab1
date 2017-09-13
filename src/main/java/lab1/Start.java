@@ -7,8 +7,7 @@ public class Start {
     public static void main(String[] args) {
         HttpRequest request = new HttpRequest(new HttpRequestInfo(HttpRequestType.GET, "httpbin.org", 80));
         try {
-            HttpRequestConnection requestConnection = request.connect();
-
+            HttpRequestConnection requestConnection = request.connectOnPath("/get");
             requestConnection.sendRequestMessage();
             
             printSocketResponse(requestConnection.getSocketConnection());

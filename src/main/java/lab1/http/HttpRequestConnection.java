@@ -5,10 +5,12 @@ import lab1.http.sockets.IoSocketConnection;
 public class HttpRequestConnection {
     private IoSocketConnection socketConnection;
     private HttpRequestInfo requestInfo;
+    private String path;
     
-    public HttpRequestConnection(HttpRequestInfo requestInfo, IoSocketConnection socketConnection){
+    public HttpRequestConnection(HttpRequestInfo requestInfo, IoSocketConnection socketConnection, String path){
         this.socketConnection = socketConnection;
         this.requestInfo = requestInfo;
+        this.path = path;
     }
 
     public void sendRequestMessage(){
@@ -19,7 +21,7 @@ public class HttpRequestConnection {
     }
 
     private void sendRequestLine(){
-        socketConnection.sendLineToBuffer(requestInfo.getRequestType().toString()+" / HTTP/1.0");
+        socketConnection.sendLineToBuffer(requestInfo.getRequestType().toString()+" "+path+" HTTP/1.0");
     }
 
     private void sendHeaders(){
