@@ -13,6 +13,10 @@ public class HttpPrintWriter extends PrintWriter{
         print(addHttpEndLine(line));
     }
     
+    public void printnln(String line) {
+        print(line + "\n");
+    }
+    
     public String addHttpEndLine(String line){
         return line + "\r\n";
     }

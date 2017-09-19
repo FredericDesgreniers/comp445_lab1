@@ -61,6 +61,11 @@ public class IoSocketConnection {
         output.println(line);
         System.out.println(line);
     }
+    
+    public void sendNormalLineToBuffer(String line){
+        output.print(line+"\n");
+        System.out.println(line);
+    }
 
     public void sendBufferToHost(){
         output.flush();

@@ -14,17 +14,17 @@ public class HttpRequest {
         socket = new IoSocket(requestInfo.getHost(), requestInfo.getPort());
     }
     
-    public HttpRequestConnection connectOnPath(String path) throws HttpRequestException {
+    public HttpRequestConnection connect() throws HttpRequestException {
         try {
-            return tryToConnectOnPath(path);
+            return tryToConnect();
         } catch (IOException e) {
             e.printStackTrace();
             throw new HttpRequestException(this, "Could not connect");
         }
     }
     
-    private HttpRequestConnection tryToConnectOnPath(String path) throws IOException {
-        return new HttpRequestConnection(new HttpRequestConnectionInfo(requestInfo, path), createHttpSocketConnection());
+    private HttpRequestConnection tryToConnect() throws IOException {
+        return new HttpRequestConnection(requestInfo, createHttpSocketConnection());
     }
     
     private IoSocketConnection createHttpSocketConnection() throws IoSocketException {
