@@ -20,7 +20,7 @@ public class HttpRequestConnection {
     }
 
     private void sendRequestLine(){
-        socketConnection.sendLineToBuffer(requestConnectionInfo.getRequestType().toString()+" "+requestConnectionInfo.getPath()+" HTTP/1.1");
+        socketConnection.sendLineToBuffer(requestConnectionInfo.getRequestType().toString()+" "+requestConnectionInfo.constructPathWithQuery()+" HTTP/1.1");
     }
 
     private void sendHeaders(){
@@ -30,6 +30,8 @@ public class HttpRequestConnection {
         for(String header : requestConnectionInfo.getAdditionalHeaders()){
             socketConnection.sendLineToBuffer(header);
         }
+
+        sendInlineDataHeader();
     }
     
     private void sendInlineDataHeader(){

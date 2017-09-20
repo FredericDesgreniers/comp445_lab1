@@ -7,6 +7,7 @@ public class HttpRequestInfo {
     private HttpRequestType requestType;
     private String host = "";
     private String path = "/";
+    private String query = "";
     private int port;
 
     private List<String> additionalHeaders;
@@ -24,14 +25,21 @@ public class HttpRequestInfo {
 
     public void setUrl(String url){
         if(url.startsWith("http://")){
-            // is http
             url = url.substring(url.indexOf("http://")+"http://".length());
         }
         
         int firstBarLocation = url.indexOf('/');
-        path = url.substring(firstBarLocation);
-        host = url.substring(0, firstBarLocation);
         
+        host = url.substring(0, firstBarLocation);
+        String pathAndQuery = url.substring(firstBarLocation);
+        
+        int queryStartIndex = pathAndQuery.indexOf('?');
+        if(queryStartIndex > 0){
+            path = pathAndQuery.substring(0, queryStartIndex);
+            query = pathAndQuery.substring(queryStartIndex);
+        }else{
+            path = pathAndQuery;
+        }
     }
     
     public HttpRequestType getRequestType() {
@@ -72,5 +80,9 @@ public class HttpRequestInfo {
 
     public String getInlineData() {
         return inlineData;
+    }
+    
+    public String constructPathWithQuery(){
+        return path + query;
     }
 }   
