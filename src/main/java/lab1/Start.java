@@ -8,10 +8,14 @@ import lab1.parser.ParamParser;
 public class Start {
     public static void main(String[] args) {
 
+        String arg = "post -h Content-Type:application/json -f test.json -o out.txt http://httpbin.org/post";
+        
+        //arg = "get http://httpbin.org/redirect/1";
+        
         HttpCommandRequestBuilder httpCommandRequestBuilder = new HttpCommandRequestBuilder();
         
         ParamParser parser = new ParamParser(httpCommandRequestBuilder);
-        parser.parse("post -h Content-Type:application/json -d '{\"Assignment\": 1}' http://httpbin.org/post");
+        parser.parse(arg);
         
         HttpRequest request = new HttpRequest(httpCommandRequestBuilder.buildRequestInfo());
         
@@ -20,21 +24,18 @@ public class Start {
             HttpRequestConnection requestConnection = request.connect();
             requestConnection.sendRequestMessage();
             
-            printSocketResponse(requestConnection.getSocketConnection());
+            HttpResponseReader responseReader = new HttpResponseReader(requestConnection.getRequestConnectionInfo(), requestConnection.getSocketConnection());
+            HttpResponse response = responseReader.getResponse();
+            
+            System.out.println(response.getStatusCode());
+            response.getHeaderData().forEach(System.out::println);
+            String body = response.getBodyData();
+            System.out.println(body);
+            
             
         } catch (HttpRequestException e) {
             e.printStackTrace();
-        } catch (IoSocketException e) {
-            e.printStackTrace();
-        }
+        } 
     }
     
-    public static void printSocketResponse(IoSocketConnection socketConnection) throws IoSocketException {
-        System.out.println("---------- RESPONSE ----------");
-        String line;
-        while((line = socketConnection.getLine()) != null)
-        {
-            System.out.println(line);
-        }
-    }
 }

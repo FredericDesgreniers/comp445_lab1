@@ -20,6 +20,10 @@ public class CommandFactory {
             case "f": {
                 return new CommandFile();                
             }
+            
+            case "o": {
+                return new CommandOutput();
+            }
         }
         
         return new CommandDefault();

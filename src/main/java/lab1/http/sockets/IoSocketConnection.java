@@ -75,7 +75,7 @@ public class IoSocketConnection {
         try {
             return input.readLine();
         } catch (IOException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             throw new IoSocketException("Could not read line");
         }
     }

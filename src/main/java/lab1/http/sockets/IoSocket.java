@@ -23,6 +23,7 @@ public class IoSocket {
 
     private IoSocketConnection tryConnect() throws IOException {
         Socket socket = new Socket(host, port);
+        socket.setSoTimeout(2000);
         return new IoSocketConnection(socket);
     }
 }

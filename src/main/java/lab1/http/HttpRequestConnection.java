@@ -55,4 +55,9 @@ public class HttpRequestConnection {
     public IoSocketConnection getSocketConnection(){
         return socketConnection;
     }
+    
+    public HttpRequestInfo getRequestConnectionInfo()
+    {
+        return requestConnectionInfo;
+    }
 }

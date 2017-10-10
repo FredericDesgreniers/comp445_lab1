@@ -8,6 +8,7 @@ public class HttpRequestInfo {
     private String host = "";
     private String path = "/";
     private String query = "";
+    private String outputFilePath = "";
     private int port;
 
     private List<String> additionalHeaders;
@@ -84,5 +85,13 @@ public class HttpRequestInfo {
     
     public String constructPathWithQuery(){
         return path + query;
+    }
+
+    public String getOutputFilePath() {
+        return outputFilePath;
+    }
+
+    public void setOutputFilePath(String outputFilePath) {
+        this.outputFilePath = outputFilePath;
     }
 }   

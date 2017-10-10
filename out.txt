@@ -1,0 +1,30 @@
+HTTP/1.1 200 OK
+Connection: keep-alive
+Server: meinheld/0.6.1
+Date: Tue, 10 Oct 2017 00:59:55 GMT
+Content-Type: application/json
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true
+X-Powered-By: Flask
+X-Processed-Time: 0.000941038131714
+Content-Length: 372
+Via: 1.1 vegur
+
+{
+  "args": {}, 
+  "data": "{\n  \"Assignment\": 1\n}", 
+  "files": {}, 
+  "form": {}, 
+  "headers": {
+    "Connection": "close", 
+    "Content-Length": "21", 
+    "Content-Type": "application/json", 
+    "Host": "httpbin.org", 
+    "User-Agent": "Mozilla/5.0"
+  }, 
+  "json": {
+    "Assignment": 1
+  }, 
+  "origin": "173.179.5.158", 
+  "url": "http://httpbin.org/post"
+}
